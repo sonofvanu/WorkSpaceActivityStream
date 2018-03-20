@@ -24,4 +24,37 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
+	@Override
+	public boolean removeUser(String userEmail) {
+		// TODO Auto-generated method stub
+		try {
+			try {
+				sessionFactory.openSession().delete(this.singleUser(userEmail));
+			} catch (Exception e) {
+				sessionFactory.getCurrentSession().delete(this.singleUser(userEmail));
+			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public UserModel singleUser(String userEmail) {
+		// TODO Auto-generated method stub
+		UserModel singleUserModel=null;
+		try {
+			try {
+				singleUserModel=sessionFactory.getCurrentSession().get(UserModel.class, userEmail);
+			} catch (Exception e) {
+				// TODO: handle exception
+				singleUserModel=sessionFactory.openSession().get(UserModel.class, userEmail);
+			}
+			return singleUserModel;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return singleUserModel;
+		}
+	}
+
 }

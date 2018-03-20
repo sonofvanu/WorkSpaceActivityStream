@@ -1,14 +1,14 @@
 D:\Workspace Project\BackEnd\src\main\java\com\stackroute\activitystream\backend\dao\UserDAO.java
 D:\Workspace Project\BackEnd\src\main\java\com\stackroute\activitystream\backend\daoimpl\WorkspaceDAOImpl.java
+D:\Workspace Project\BackEnd\src\main\java\com\stackroute\activitystream\backend\model\WorkspaceModel.java
 D:\Workspace Project\BackEnd\src\main\java\com\stackroute\activitystream\backend\model\MessageModel.java
 D:\Workspace Project\BackEnd\src\main\java\com\stackroute\activitystream\backend\daoimpl\MessageDAOImpl.java
-D:\Workspace Project\BackEnd\src\main\java\com\stackroute\activitystream\backend\model\UserWorkspace.java
 D:\Workspace Project\BackEnd\src\main\java\com\stackroute\activitystream\backend\daoimpl\CircleDAOImpl.java
 D:\Workspace Project\BackEnd\src\main\java\com\stackroute\activitystream\backend\daoimpl\UserWorkspaceDAOImpl.java
 D:\Workspace Project\BackEnd\src\main\java\com\stackroute\activitystream\backend\BackEndApplication.java
 D:\Workspace Project\BackEnd\src\main\java\com\stackroute\activitystream\backend\model\UserModel.java
+D:\Workspace Project\BackEnd\src\main\java\com\stackroute\activitystream\backend\model\UserWorkspaceModel.java
 D:\Workspace Project\BackEnd\src\main\java\com\stackroute\activitystream\backend\dao\CircleDAO.java
-D:\Workspace Project\BackEnd\src\main\java\com\stackroute\activitystream\backend\model\Workspace.java
 D:\Workspace Project\BackEnd\src\main\java\com\stackroute\activitystream\backend\dao\MessageDAO.java
 D:\Workspace Project\BackEnd\src\main\java\com\stackroute\activitystream\backend\dao\UserWorkspaceDAO.java
 D:\Workspace Project\BackEnd\src\main\java\com\stackroute\activitystream\backend\dao\WorkspaceDAO.java

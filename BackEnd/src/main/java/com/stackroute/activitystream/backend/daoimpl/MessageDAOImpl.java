@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.stackroute.activitystream.backend.dao.MessageDAO;
 import com.stackroute.activitystream.backend.model.MessageModel;
-import com.stackroute.activitystream.backend.model.UserWorkspace;
+import com.stackroute.activitystream.backend.model.UserWorkspaceModel;
 
 public class MessageDAOImpl implements MessageDAO {
 
@@ -19,13 +19,13 @@ public class MessageDAOImpl implements MessageDAO {
 	SessionFactory sessionFactory;
 
 	@Override
-	public boolean addMessageAndRemoveMessage(MessageModel messageModel) {
+	public boolean addMessage(MessageModel messageModel) {
 		// TODO Auto-generated method stub
 		try {
 			try {
-				sessionFactory.getCurrentSession().saveOrUpdate(messageModel);
+				sessionFactory.getCurrentSession().save(messageModel);
 			} catch (Exception e) {
-				sessionFactory.openSession().saveOrUpdate(messageModel);
+				sessionFactory.openSession().save(messageModel);
 			}
 			return true;
 		} catch (Exception e) {
@@ -40,13 +40,13 @@ public class MessageDAOImpl implements MessageDAO {
 		List<MessageModel> allMessageInACircle = null;
 		try {
 			try {
-				Criteria criteria = sessionFactory.openSession().createCriteria(UserWorkspace.class);
+				Criteria criteria = sessionFactory.openSession().createCriteria(UserWorkspaceModel.class);
 				criteria.add(Restrictions.eq("workSpaceId", workspaceId));
 				criteria.add(Restrictions.eq("circleId", circleId));
 				criteria.addOrder(Order.asc("messageId"));
 				allMessageInACircle = criteria.list();
 			} catch (Exception e) {
-				Criteria criteria = sessionFactory.getCurrentSession().createCriteria(UserWorkspace.class);
+				Criteria criteria = sessionFactory.getCurrentSession().createCriteria(UserWorkspaceModel.class);
 				criteria.add(Restrictions.eq("workSpaceId", workspaceId));
 				criteria.add(Restrictions.eq("circleId", circleId));
 				criteria.addOrder(Order.asc("messageId"));
@@ -65,7 +65,7 @@ public class MessageDAOImpl implements MessageDAO {
 		List<MessageModel> allMessageInACircle = null;
 		try {
 			try {
-				Criteria criteria = sessionFactory.openSession().createCriteria(UserWorkspace.class);
+				Criteria criteria = sessionFactory.openSession().createCriteria(UserWorkspaceModel.class);
 				Criterion conditionOne = Restrictions.and(Restrictions.eq("senderId", UserIdOne),
 						Restrictions.eq("receiverId", UserIdTwo));
 				Criterion conditionTwo = Restrictions.and(Restrictions.eq("receiverId", UserIdOne),
@@ -73,7 +73,7 @@ public class MessageDAOImpl implements MessageDAO {
 				criteria.addOrder(Order.asc("messageId"));
 				allMessageInACircle = criteria.add(Restrictions.or(conditionOne, conditionTwo)).list();
 			} catch (Exception e) {
-				Criteria criteria = sessionFactory.getCurrentSession().createCriteria(UserWorkspace.class);
+				Criteria criteria = sessionFactory.getCurrentSession().createCriteria(UserWorkspaceModel.class);
 				Criterion conditionOne = Restrictions.and(Restrictions.eq("senderId", UserIdOne),
 						Restrictions.eq("receiverId", UserIdTwo));
 				Criterion conditionTwo = Restrictions.and(Restrictions.eq("receiverId", UserIdOne),
@@ -84,6 +84,56 @@ public class MessageDAOImpl implements MessageDAO {
 			return allMessageInACircle;
 		} catch (Exception e) {
 			return allMessageInACircle;
+		}
+	}
+
+	@Override
+	public boolean hideMessage(MessageModel messageModel) {
+		// TODO Auto-generated method stub
+		try {
+			try {
+				sessionFactory.getCurrentSession().saveOrUpdate(messageModel);
+			} catch (Exception e) {
+				sessionFactory.openSession().saveOrUpdate(messageModel);
+			}
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+	}
+
+	@Override
+	public boolean removeMessage(int messageId) {
+		// TODO Auto-generated method stub
+		try {
+			try {
+				sessionFactory.getCurrentSession().delete(this.singleMessage(messageId));
+			} catch (Exception e) {
+				sessionFactory.openSession().delete(this.singleMessage(messageId));
+			}
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+	}
+
+	@Override
+	public MessageModel singleMessage(int messageId) {
+		// TODO Auto-generated method stub
+		MessageModel singleMessage = null;
+		try {
+			try {
+				singleMessage = sessionFactory.getCurrentSession().get(MessageModel.class, messageId);
+			} catch (Exception e) {
+				// TODO: handle exception
+				singleMessage = sessionFactory.openSession().get(MessageModel.class, messageId);
+			}
+			return singleMessage;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return singleMessage;
 		}
 	}
 

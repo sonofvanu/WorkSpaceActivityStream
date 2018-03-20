@@ -54,4 +54,44 @@ public class UserCircleDAOImpl implements UserCircleDAO {
 		}
 	}
 
+	@Override
+	public boolean removeuserFromCircle(int circleId, String userEmailId) {
+		// TODO Auto-generated method stub
+		try {
+			try {
+				sessionFactory.getCurrentSession().delete(this.singleCircleOfUser(circleId, userEmailId));
+			} catch (Exception e) {
+				sessionFactory.openSession().delete(this.singleCircleOfUser(circleId, userEmailId));
+			}
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+	}
+
+	@Override
+	public UserCircleModel singleCircleOfUser(int circleId, String userEmailId) {
+		// TODO Auto-generated method stub
+		UserCircleModel singleUserCircle = null;
+
+		try {
+			try {
+				Criteria criteria = sessionFactory.getCurrentSession().createCriteria(UserCircleModel.class);
+				criteria.add(Restrictions.eq("circleId", circleId));
+				criteria.add(Restrictions.eq("userEmailId", userEmailId));
+				singleUserCircle = (UserCircleModel) criteria.list().get(0);
+			} catch (Exception e) {
+				Criteria criteria = sessionFactory.openSession().createCriteria(UserCircleModel.class);
+				criteria.add(Restrictions.eq("circleId", circleId));
+				criteria.add(Restrictions.eq("userEmailId", userEmailId));
+				singleUserCircle = (UserCircleModel) criteria.list().get(0);
+			}
+			return singleUserCircle;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return singleUserCircle;
+		}
+	}
+
 }

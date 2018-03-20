@@ -36,19 +36,16 @@ public class UserCircleModel implements Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
 	private int userCircleId;
-	@ManyToOne
-	@JoinColumn(name = "CIRCLEMODEL_CIRCLEID")
+	@Column
 	private int circleId;
-	@ManyToOne
-	@JoinColumn(name = "WORKSPACE_WORKSPACEID")
+	@Column
 	private int workSpaceId;
 	@Max(value = 30)
 	private String userEmailId;
-	@ManyToOne
-	@JoinColumn(name = "CIRCLEMODEL_CIRCLENAME")
+	@Column
 	private String circleName;
 	@Column
 	private boolean circleStatus;

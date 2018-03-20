@@ -10,5 +10,9 @@ public interface CircleDAO {
 	
 	public List<CircleModel> listOfCircleOfWorkspace(int workspaceId);
 	
+	public CircleModel singleCircle(int circleId);
+	
+	public boolean removecircle(int circleId);
+	
 
 }

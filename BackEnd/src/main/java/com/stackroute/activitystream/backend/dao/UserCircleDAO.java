@@ -9,5 +9,9 @@ public interface UserCircleDAO {
 	public boolean addUserToCircle(UserCircleModel userCircleModel);
 
 	public List<UserCircleModel> allCircleOfAnUserinWorkspace(int workspaceId, String userEmailId);
+	
+	public boolean removeuserFromCircle(int circleId,String userEmailId);
+	
+	public UserCircleModel singleCircleOfUser(int circleId,String userEmailId);
 
 }

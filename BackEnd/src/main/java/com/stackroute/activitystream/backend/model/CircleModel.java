@@ -6,12 +6,14 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 
@@ -38,21 +40,17 @@ public class CircleModel implements Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@OneToMany(mappedBy = "circlemodel", cascade = CascadeType.ALL)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int circleId;
-	@ManyToOne
-	@JoinColumn(name = "WORKSPACE_WORKSPACEID")
+	@Column
 	private int workSpaceId;
 	@Max(value = 50)
 	@Column
 	private String workSpaceName;
-	@ManyToOne
-	@JoinColumn(name = "USERMODEL_USEREMAIL")
+	@Column
 	private String userEmailId;
 	@Max(value = 20)
 	@Column
-	@OneToMany(mappedBy = "circlemodel", cascade = CascadeType.ALL)
 	private String circleName;
 	@Column
 	private boolean isCircleExist;

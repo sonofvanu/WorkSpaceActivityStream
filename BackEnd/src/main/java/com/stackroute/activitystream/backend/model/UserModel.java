@@ -36,7 +36,6 @@ public class UserModel implements Serializable {
 	@Id
 	@Max(value = 30)
 	@Column
-	@OneToMany(mappedBy = "usermodel", cascade = CascadeType.ALL)
 	private String userEmail;
 	@Max(value = 30)
 	@Column

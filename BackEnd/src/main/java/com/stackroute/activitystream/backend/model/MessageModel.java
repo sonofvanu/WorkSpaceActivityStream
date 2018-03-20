@@ -42,14 +42,12 @@ public class MessageModel implements Serializable {
 
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
 	private int messageId;
-	@ManyToOne
-	@JoinColumn(name = "WORKSPACE_WORKSPACEID")
+	@Column
 	private int workSpaceId;
-	@ManyToOne
-	@JoinColumn(name = "CIRCLEMODEL_CIRCLEID")
+	@Column
 	private int circleId;
 	@Column
 	private String messageContent;
